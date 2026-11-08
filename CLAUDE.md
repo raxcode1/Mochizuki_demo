@@ -21,9 +21,14 @@ npm run preview        # sirve dist/ tal como quedará en producción
 ## Estructura
 - `index.html` — una sola página con secciones ancladas (hero, menú, personalizador, ubicación/horario, redes, pie).
 - `src/main.js` — punto de entrada.
-- `src/styles/` — `variables.css` (tokens), `base.css` (reset/global), `components.css` (botón, pastilla, pincelada, tarjeta, carrito).
-- `src/data/` — `negocio.json` y `menu.json` (**únicas** fuentes de datos).
-- `src/modules/` — `menu.js`, `carrito.js`, `whatsapp.js`, `formato.js`.
+- `src/styles/` — `variables.css` (tokens), `base.css` (reset/global), `components.css` (botón, pastilla, pincelada, tarjeta, opciones, carrito, diálogos), `secciones.css` (layout de cada sección).
+- `src/data/` — `negocio.json` y `menu.json` (**únicas** fuentes de datos). `menu.json` tiene `conjuntos_opciones` (corn dog en 3 pasos, yakult, extras) referenciados por el campo `opciones` de cada producto.
+- `src/modules/`:
+  - `opciones.js` — lógica pura: precio con sobreprecios, validación, texto de opciones, clave de línea.
+  - `menu.js` — pinta categorías y tarjetas. `personalizador.js` — diálogo de opciones.
+  - `carrito.js` — estado + localStorage (guarda solo id/cantidad/selección; precios se recalculan del JSON). `carrito-ui.js` — diálogo del carrito.
+  - `whatsapp.js` — mensaje y enlace wa.me. `formato.js` — RD$ y escape HTML. `negocio.js` — rellena `data-negocio` / `data-enlace`.
+- `vite.config.js` — plugin `seo-desde-json` (title, OG, JSON-LD desde los JSON) y `bloquear-referencias` (404 en dev/preview).
 - `public/` — favicon, robots, sitemap, `img/` (placeholders SVG propios; rutas listas para fotos reales con permiso).
 - `referencias/` — capturas de terceros, **solo consulta**: nunca copiar a `public/` ni `src/`, nunca en el build, está en `.gitignore`.
 
