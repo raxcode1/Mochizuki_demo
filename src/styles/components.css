@@ -460,11 +460,11 @@
 }
 
 .dialogo__pie {
-  padding: var(--esp-4);
+  padding: var(--esp-3) var(--esp-4);
   border-top: 2px dashed var(--durazno);
   background: var(--blanco);
   display: grid;
-  gap: var(--esp-3);
+  gap: var(--esp-2);
 }
 
 /* ---------------------------------------------------------
@@ -559,9 +559,18 @@
 }
 .campos {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--esp-2);
+  grid-template-columns: 1fr; /* una columna en móvil */
+  gap: var(--esp-3);
   margin-top: var(--esp-4);
+}
+.campo input {
+  min-width: 0;
+  width: 100%;
+}
+@media (min-width: 480px) {
+  .campos {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .nota-pequena {

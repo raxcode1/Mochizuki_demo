@@ -20,6 +20,8 @@ import { pintarMenu } from "./modules/menu.js";
 import { crearPersonalizador } from "./modules/personalizador.js";
 import { rellenarNegocio, cargarMapa } from "./modules/negocio.js";
 import { buscarProducto } from "./modules/opciones.js";
+import * as carrito from "./modules/carrito.js";
+import { iniciarCarritoUI } from "./modules/carrito-ui.js";
 
 // ---------- Aviso flotante ("¡Agregado!") ----------
 const aviso = document.querySelector("[data-aviso]");
@@ -30,11 +32,15 @@ function avisar(texto) {
   temporizadorAviso = setTimeout(() => (aviso.textContent = ""), 2200);
 }
 
-// ---------- Agregar al pedido (se conecta al carrito en el paso 5) ----------
+// ---------- Agregar al pedido ----------
 function agregar(productoId, seleccion = {}, cantidad = 1) {
   const producto = buscarProducto(productoId);
-  avisar(`¡Listo! ${cantidad} × ${producto.nombre} 🧡`);
+  if (carrito.agregar(productoId, seleccion, cantidad)) {
+    avisar(`¡Listo! ${cantidad} × ${producto.nombre} al pedido 🧡`);
+  }
 }
+
+const carritoUI = iniciarCarritoUI();
 
 // ---------- Pintar la página ----------
 rellenarNegocio();
@@ -67,6 +73,9 @@ document.addEventListener("click", (evento) => {
       break;
     case "agregar":
       agregar(boton.dataset.id);
+      break;
+    case "abrir-carrito":
+      carritoUI.abrir();
       break;
     case "cargar-mapa":
       cargarMapa(boton);
