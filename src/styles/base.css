@@ -34,7 +34,13 @@ body {
   font-family: var(--fuente-texto);
   font-size: var(--texto-md);
   line-height: 1.6;
-  overflow-x: hidden;
+}
+
+/* Evita el scroll horizontal por decoraciones rotadas.
+   "clip" (y no "hidden") para no romper position: sticky. */
+html,
+body {
+  overflow-x: clip;
 }
 
 /* Títulos: sans redondeada, gruesa y en MAYÚSCULAS como en su menú */

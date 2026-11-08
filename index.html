@@ -3,10 +3,254 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mochizuki RD | Mochi Donuts y K-Corn Dogs en Santo Domingo</title>
+    <meta name="theme-color" content="#F05424" />
+    <!-- Título, descripción, Open Graph y JSON-LD los inyecta vite.config.js
+         desde src/data/negocio.json al hacer dev/build (ver plugin "seo-desde-json"). -->
+    <title>Mochizuki RD</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
   <body>
-    <h1>Mochizuki RD (demo en construcción)</h1>
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <!-- ================= CABECERA ================= -->
+    <header class="cabecera">
+      <div class="contenedor cabecera__fila">
+        <a href="#inicio" class="wordmark wordmark--chico" aria-label="Mochizuki, ir al inicio">
+          <span class="wordmark__mochi">MOCHI</span><span class="wordmark__zuki">ZUKI</span>
+        </a>
+        <nav class="cabecera__nav" aria-label="Principal">
+          <a href="#menu">Menú</a>
+          <a href="#visitanos">Visítanos</a>
+          <a href="#redes">Redes</a>
+        </nav>
+        <button type="button" class="boton-carrito" data-accion="abrir-carrito" aria-label="Ver tu pedido">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM5.2 4l.4 2H21l-2.2 8.2a2 2 0 0 1-1.9 1.5H8.4a2 2 0 0 1-2-1.6L4.4 4H2V2h3.9a1 1 0 0 1 1 .8Z"/></svg>
+          <span class="contador" data-carrito="contador">0</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="contenido">
+      <!-- ================= HERO ================= -->
+      <section id="inicio" class="hero" aria-labelledby="titulo-principal">
+        <div class="contenedor hero__grid">
+          <div class="hero__texto">
+            <p class="hero__kicker">
+              <span data-negocio="etiqueta"></span> ✨ <span data-negocio="direccion.referencia"></span>
+            </p>
+
+            <!-- Wordmark de texto PROVISIONAL (no es el logo oficial) -->
+            <h1 id="titulo-principal" class="wordmark wordmark--grande">
+              <span class="wordmark__mochi">MOCHI</span><span class="wordmark__zuki">ZUKI</span>
+              <span class="sr-only"> RD: mochi donuts japonesas y corn dogs coreanos</span>
+            </h1>
+            <p class="wordmark__lema" data-negocio="lema"></p>
+            <p class="wordmark__provisional">Logo provisional del demo</p>
+
+            <p class="hero__titular">¡Crujiente por fuera, feliz por dentro! 🌭🍩</p>
+            <p class="hero__intro">
+              Somos la primera tienda del país especializada en mochi donuts japonesas y
+              corn dogs coreanos. Tú eliges sabor, relleno y salsa; nosotros lo freímos al momento. 🔥
+            </p>
+
+            <div class="hero__acciones">
+              <a class="boton boton--primario" href="#menu">Ver el menú</a>
+              <button type="button" class="boton boton--secundario" data-accion="armar-corn-dog">
+                Arma tu corn dog
+              </button>
+            </div>
+
+            <p class="promo" data-promo hidden></p>
+
+            <div class="calificaciones">
+              <ul class="calificaciones__lista" data-negocio-lista="calificaciones"></ul>
+              <p class="nota-pequena">
+                Cifras públicas a la fecha del demo (<span data-negocio="calificaciones_fecha"></span>).
+              </p>
+            </div>
+          </div>
+
+          <!-- Arte decorativo: ilustraciones propias, sin fotos del negocio -->
+          <div class="hero__arte" aria-hidden="true">
+            <span class="mancha mancha--marron hero__mancha"></span>
+            <img class="hero__dona" src="/img/placeholders/mochi.svg" alt="" width="240" height="240" />
+            <img class="hero__corndog" src="/img/placeholders/corn-dog.svg" alt="" width="200" height="200" />
+            <span class="punto punto--lleno" style="width: 14px; height: 14px; top: 8%; left: 12%"></span>
+            <span class="punto punto--aro" style="width: 22px; height: 22px; bottom: 12%; left: 4%"></span>
+            <span class="punto punto--lleno" style="width: 10px; height: 10px; top: 18%; right: 6%"></span>
+            <span class="punto punto--aro" style="width: 16px; height: 16px; bottom: 6%; right: 18%"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cinta de marca -->
+      <div class="cinta" aria-hidden="true">
+        <div class="cinta__texto">
+          ASIAN STREET FOOD 🍩 MOCHI DONUTS 🌭 K-CORN DOGS ✨ HECHOS AL MOMENTO 🧡
+          ASIAN STREET FOOD 🍩 MOCHI DONUTS 🌭 K-CORN DOGS ✨ HECHOS AL MOMENTO 🧡
+        </div>
+      </div>
+
+      <!-- ================= MENÚ ================= -->
+      <section id="menu" class="seccion-menu" aria-labelledby="titulo-menu">
+        <div class="contenedor">
+          <h2 id="titulo-menu" class="titulo-seccion">El menú</h2>
+          <p class="seccion__intro">¡Elige, combina y repite! Agrega lo que quieras y te armamos el pedido para WhatsApp.</p>
+          <p class="aviso-precios">
+            <span class="pastilla pastilla--aviso">Precios de referencia</span>
+            <span data-negocio="nota_precios"></span>
+          </p>
+        </div>
+
+        <nav class="categorias-nav" aria-label="Categorías del menú">
+          <ul class="categorias-nav__lista" data-menu="nav"></ul>
+        </nav>
+
+        <div class="contenedor" data-menu="categorias">
+          <!-- menu.js pinta aquí las categorías y productos desde menu.json -->
+          <noscript><p>Activa JavaScript para ver el menú.</p></noscript>
+        </div>
+      </section>
+
+      <!-- ================= UBICACIÓN Y HORARIO ================= -->
+      <section id="visitanos" class="seccion-visitanos" aria-labelledby="titulo-visitanos">
+        <div class="contenedor visitanos__grid">
+          <div class="visitanos__texto">
+            <h2 id="titulo-visitanos" class="pincelada">Ven a vernos</h2>
+            <p class="visitanos__intro">
+              Ambiente acogedor, buena música y a pasos de tu aula. Pasa entre clases por tu antojo. 🧡
+            </p>
+
+            <dl class="datos">
+              <div class="datos__fila">
+                <dt>📍 Dirección</dt>
+                <dd>
+                  <span data-negocio="direccion.calle"></span>, <span data-negocio="direccion.ciudad"></span><br />
+                  <small data-negocio="direccion.referencia"></small>
+                </dd>
+              </div>
+              <div class="datos__fila">
+                <dt>🕒 Horario</dt>
+                <dd data-negocio-horario></dd>
+              </div>
+              <div class="datos__fila">
+                <dt>📞 Teléfono</dt>
+                <dd><a data-enlace="telefono"><span data-negocio="telefono.mostrar"></span></a></dd>
+              </div>
+            </dl>
+
+            <div class="visitanos__acciones">
+              <a class="boton boton--primario" data-enlace="maps_como_llegar" target="_blank" rel="noopener">Cómo llegar</a>
+              <a class="boton boton--secundario" data-enlace="ubereats" target="_blank" rel="noopener">Pedir por Uber Eats</a>
+            </div>
+          </div>
+
+          <div class="mapa">
+            <div class="mapa__marcador" data-mapa>
+              <img src="/img/placeholders/mochi.svg" alt="" width="72" height="72" aria-hidden="true" />
+              <p>El mapa se carga solo si lo pides (así la página va más rápida).</p>
+              <button type="button" class="boton boton--oscuro boton--chico" data-accion="cargar-mapa">Mostrar mapa</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= REDES ================= -->
+      <section id="redes" class="seccion-redes" aria-labelledby="titulo-redes">
+        <div class="contenedor">
+          <h2 id="titulo-redes" class="titulo-seccion">Síguenos</h2>
+          <p class="seccion__intro">Sabores nuevos, antojos del día y todo lo que pasa en la tienda. ✨</p>
+          <ul class="redes__lista">
+            <li>
+              <a class="red" data-enlace="instagram" target="_blank" rel="noopener">
+                <span class="red__icono" aria-hidden="true">📸</span>
+                <span><strong>Instagram</strong><br /><span data-negocio="enlaces.instagram_usuario"></span></span>
+              </a>
+            </li>
+            <li data-solo-si="tiktok">
+              <a class="red" data-enlace="tiktok" target="_blank" rel="noopener">
+                <span class="red__icono" aria-hidden="true">🎵</span>
+                <span><strong>TikTok</strong><br />Videos y antojos</span>
+              </a>
+            </li>
+            <li>
+              <a class="red" data-enlace="ubereats" target="_blank" rel="noopener">
+                <span class="red__icono" aria-hidden="true">🛵</span>
+                <span><strong>Uber Eats</strong><br />Te lo llevan a casa</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <!-- ================= PIE ================= -->
+    <footer class="pie">
+      <div class="contenedor pie__grid">
+        <div>
+          <p class="wordmark wordmark--chico wordmark--pie">
+            <span class="wordmark__mochi">MOCHI</span><span class="wordmark__zuki">ZUKI</span>
+          </p>
+          <p class="pie__lema" data-negocio="lema"></p>
+        </div>
+        <div class="pie__datos">
+          <p><span data-negocio="direccion.calle"></span>, <span data-negocio="direccion.ciudad"></span></p>
+          <p><strong>Precios de referencia.</strong> <span data-negocio="nota_precios"></span></p>
+        </div>
+      </div>
+      <div class="contenedor">
+        <p class="pie__aviso" data-negocio="sitio.aviso"></p>
+        <p class="pie__creditos">Logo, fotos y textos provisionales. Ilustraciones propias del demo.</p>
+      </div>
+    </footer>
+
+    <!-- ================= BARRA "VER PEDIDO" ================= -->
+    <button type="button" class="boton boton--primario barra-pedido" data-accion="abrir-carrito" data-carrito="barra" hidden>
+      <span>Ver pedido (<span data-carrito="cantidad">0</span>)</span>
+      <span data-carrito="total-barra"></span>
+    </button>
+
+    <!-- ================= PERSONALIZADOR (diálogo) ================= -->
+    <dialog class="dialogo" id="personalizador" aria-labelledby="personalizador-titulo">
+      <form method="dialog" class="dialogo__contenido" data-personalizador="form" novalidate>
+        <div class="dialogo__cabecera">
+          <h2 id="personalizador-titulo" data-personalizador="titulo">Personaliza</h2>
+          <button type="button" class="boton-icono" data-accion="cerrar-dialogo" aria-label="Cerrar">✕</button>
+        </div>
+        <div class="dialogo__cuerpo" data-personalizador="cuerpo"></div>
+        <div class="dialogo__pie">
+          <p class="error" data-personalizador="error" role="alert"></p>
+          <div class="dialogo__fila">
+            <div class="cantidad">
+              <button type="button" class="boton-icono" data-personalizador="menos" aria-label="Quitar uno">−</button>
+              <span class="cantidad__valor" data-personalizador="cantidad" aria-live="polite">1</span>
+              <button type="button" class="boton-icono" data-personalizador="mas" aria-label="Agregar uno">+</button>
+            </div>
+            <p class="dialogo__total">
+              <span class="sr-only">Total:</span>
+              <span data-personalizador="precio" aria-live="polite"></span>
+            </p>
+          </div>
+          <button type="submit" class="boton boton--primario boton--ancho" data-personalizador="agregar">
+            Agregar al pedido
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- ================= CARRITO (diálogo) ================= -->
+    <dialog class="dialogo" id="carrito" aria-labelledby="carrito-titulo">
+      <div class="dialogo__cabecera">
+        <h2 id="carrito-titulo">Tu pedido 🧡</h2>
+        <button type="button" class="boton-icono" data-accion="cerrar-dialogo" aria-label="Cerrar">✕</button>
+      </div>
+      <div class="dialogo__cuerpo" data-carrito="cuerpo"></div>
+      <div class="dialogo__pie" data-carrito="pie"></div>
+    </dialog>
+
+    <!-- Aviso flotante para lectores de pantalla y vista -->
+    <div class="aviso-flotante" data-aviso role="status" aria-live="polite"></div>
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

@@ -252,6 +252,38 @@
   margin: 0;
 }
 
+/* En móvil (< 560 px) la tarjeta es horizontal: ilustración a la
+   izquierda y texto a la derecha. La página queda mucho más corta. */
+@media (max-width: 559px) {
+  .tarjeta {
+    flex-direction: row;
+  }
+  .tarjeta__imagen {
+    flex: 0 0 104px;
+    aspect-ratio: auto;
+    border-bottom: 0;
+    border-right: 3px solid var(--marron);
+  }
+  .tarjeta__imagen img {
+    width: 78%;
+  }
+  .tarjeta__etiquetas {
+    top: var(--esp-2);
+    left: var(--esp-1);
+    right: var(--esp-1);
+  }
+  .tarjeta__cuerpo {
+    padding: var(--esp-3);
+    gap: var(--esp-1);
+  }
+  .tarjeta__nombre {
+    font-size: var(--texto-lg);
+  }
+  .tarjeta__pie {
+    flex-wrap: wrap;
+  }
+}
+
 /* Producto no pedible (sojus +18) o no disponible */
 .tarjeta--bloqueada .tarjeta__imagen {
   filter: grayscale(0.35);
@@ -262,6 +294,7 @@
    El input real queda oculto visualmente pero accesible.
    --------------------------------------------------------- */
 .paso {
+  min-width: 0; /* los fieldset por defecto no se encogen */
   border: 0;
   margin: 0 0 var(--esp-5);
   padding: 0;
@@ -300,12 +333,19 @@
 
 .opciones {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-template-columns: repeat(2, 1fr); /* 2 columnas en móvil */
   gap: var(--esp-2);
+}
+
+@media (min-width: 520px) {
+  .opciones {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .opcion {
   position: relative;
+  min-width: 0;
 }
 
 .opcion input {
