@@ -1,0 +1,5 @@
+# TODO: cambiar la URL por la definitiva (ver negocio.json -> sitio.url)
+User-agent: *
+Allow: /
+
+Sitemap: https://mochizuki-demo.pages.dev/sitemap.xml
