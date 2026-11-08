@@ -1,0 +1,69 @@
+/* =========================================================
+   variables.css — Tokens de diseño de Mochizuki RD (demo)
+   Colores medidos a ojo de las capturas de referencias/:
+   son APROXIMADOS. Si el dueño tiene manual de marca, mandan esos.
+   ========================================================= */
+
+:root {
+  /* ---------- Colores de marca ---------- */
+  --naranja: #f05424;          /* logo, botones, pinceladas con texto */
+  --naranja-pincelada: #ff7035; /* SOLO decoración (puntos, bordes): el blanco encima no pasa AA */
+  --naranja-texto: #b83a10;    /* naranja oscuro para texto pequeño y precios (5.46:1 sobre crema) */
+  --marron: #5a3c18;           /* texto del logo, títulos */
+  --marron-bloque: #70380a;    /* fondos de bloque y manchas */
+  --rosa: #fcbac0;             /* glaseado de la dona */
+  --durazno: #ffd0b8;          /* detalles y fondos suaves */
+  --crema: #fff8f0;            /* fondo general */
+  --blanco: #ffffff;
+  --tinta: #1a1a1a;            /* texto base */
+  --tinta-suave: #4a3a2c;      /* texto secundario (marrón grisáceo, 10:1 sobre crema) */
+  --masa: #e9a55a;             /* color "masa frita" para las ilustraciones */
+  --whatsapp: #128c4a;         /* verde oscuro: blanco encima pasa AA */
+
+  /* Combinaciones verificadas (relación de contraste):
+     blanco / naranja ........ 3.50  -> solo texto GRANDE (>= 18.66 px en negrita)
+     tinta  / naranja ........ 4.97  -> OK texto normal
+     naranja-texto / crema ... 5.46  -> OK texto normal
+     blanco / marron-bloque .. 9.30  -> OK
+     marron / rosa ........... 6.17  -> OK
+     marron / durazno ........ 7.15  -> OK */
+
+  /* ---------- Tipografía ---------- */
+  --fuente-titulo: "Baloo 2", "Arial Rounded MT Bold", system-ui, sans-serif;
+  --fuente-texto: "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --texto-xs: 0.75rem;   /* 12 px */
+  --texto-sm: 0.875rem;  /* 14 px */
+  --texto-md: 1rem;      /* 16 px */
+  --texto-lg: 1.1875rem; /* 19 px: mínimo para "texto grande" en negrita */
+  --texto-xl: 1.5rem;
+  --texto-2xl: clamp(1.75rem, 5vw, 2.25rem);
+  --texto-3xl: clamp(2.5rem, 11vw, 4.5rem);
+
+  /* ---------- Espaciados (escala de 4 px) ---------- */
+  --esp-1: 0.25rem;
+  --esp-2: 0.5rem;
+  --esp-3: 0.75rem;
+  --esp-4: 1rem;
+  --esp-5: 1.5rem;
+  --esp-6: 2rem;
+  --esp-7: 3rem;
+  --esp-8: 4rem;
+
+  /* ---------- Radios (bordes muy redondeados) ---------- */
+  --radio-sm: 12px;
+  --radio-md: 16px;
+  --radio-lg: 24px;
+  --radio-pastilla: 999px;
+
+  /* ---------- Sombras (cálidas, tono marrón) ---------- */
+  --sombra-sm: 0 2px 6px rgb(90 60 24 / 0.12);
+  --sombra-md: 0 8px 20px rgb(90 60 24 / 0.16);
+  --sombra-boton: 0 4px 0 var(--marron); /* sombra "sólida" juguetona */
+
+  /* ---------- Medidas ---------- */
+  --tactil: 44px;          /* tamaño mínimo de botones táctiles */
+  --ancho-max: 1120px;
+  --alto-cabecera: 64px;
+  --foco: 3px solid var(--marron);
+}

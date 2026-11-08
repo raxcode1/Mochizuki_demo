@@ -1,0 +1,619 @@
+/* =========================================================
+   components.css — Piezas reutilizables
+   Botón · Pastilla · Pincelada · Tarjeta de producto ·
+   Opciones del personalizador · Carrito · Decoración
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   BOTÓN
+   El texto usa la fuente de títulos en 800 y 19 px: así el blanco
+   sobre naranja cuenta como "texto grande" y cumple AA (3.5:1).
+   --------------------------------------------------------- */
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--esp-2);
+  min-height: var(--tactil);
+  min-width: var(--tactil);
+  padding: var(--esp-3) var(--esp-5);
+  border: 3px solid var(--marron);
+  border-radius: var(--radio-pastilla);
+  font-family: var(--fuente-titulo);
+  font-weight: 800;
+  font-size: var(--texto-lg);
+  line-height: 1.1;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  box-shadow: var(--sombra-boton);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.boton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 var(--marron);
+}
+
+.boton:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--marron);
+}
+
+.boton:disabled,
+.boton[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.boton--primario {
+  background: var(--naranja);
+  color: var(--blanco);
+}
+
+.boton--secundario {
+  background: var(--blanco);
+  color: var(--marron);
+}
+
+.boton--oscuro {
+  background: var(--marron-bloque);
+  color: var(--blanco);
+}
+
+.boton--whatsapp {
+  background: var(--whatsapp);
+  color: var(--blanco);
+}
+
+.boton--ancho {
+  width: 100%;
+}
+
+/* Variante pequeña: el texto baja de 19 px, así que en naranja
+   se usa texto TINTA (4.97:1) en lugar de blanco */
+.boton--chico {
+  font-size: var(--texto-md);
+  padding: var(--esp-2) var(--esp-4);
+  box-shadow: 0 3px 0 var(--marron);
+}
+.boton--chico.boton--primario {
+  color: var(--tinta);
+}
+
+/* Botón redondo solo con icono (+, −, ×, carrito) */
+.boton-icono {
+  display: inline-grid;
+  place-items: center;
+  width: var(--tactil);
+  height: var(--tactil);
+  padding: 0;
+  border: 2px solid var(--marron);
+  border-radius: 50%;
+  background: var(--blanco);
+  color: var(--marron);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.boton-icono:hover {
+  background: var(--durazno);
+}
+
+/* ---------------------------------------------------------
+   PASTILLA (etiquetas: NEW, MÁS VENDIDO, +18, avisos)
+   --------------------------------------------------------- */
+.pastilla {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  padding: 0.2em 0.75em;
+  border-radius: var(--radio-pastilla);
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+.pastilla--new {
+  background: var(--rosa);
+  color: var(--marron);
+}
+.pastilla--vendido {
+  background: var(--naranja-texto);
+  color: var(--blanco);
+}
+.pastilla--edad {
+  background: var(--tinta);
+  color: var(--blanco);
+}
+.pastilla--aviso {
+  background: var(--durazno);
+  color: var(--marron);
+}
+.pastilla--claro {
+  background: var(--blanco);
+  color: var(--marron);
+  border: 2px solid var(--marron);
+}
+
+/* ---------------------------------------------------------
+   PINCELADA — encabezado de categoría como en su menú de Canva.
+   Texto blanco grande (>= 24 px, 800) sobre #F05424: AA texto grande.
+   --------------------------------------------------------- */
+.pincelada {
+  display: inline-block;
+  padding: 0.35em 1.1em 0.3em;
+  background: url("../assets/pincelada.svg") center / 100% 100% no-repeat;
+  color: var(--blanco);
+  font-family: var(--fuente-titulo);
+  font-weight: 800;
+  font-size: var(--texto-2xl);
+  line-height: 1.1;
+  text-transform: uppercase;
+  transform: rotate(-1.5deg);
+  margin: 0 0 var(--esp-4);
+}
+
+/* ---------------------------------------------------------
+   TARJETA DE PRODUCTO
+   --------------------------------------------------------- */
+.tarjeta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--blanco);
+  border: 3px solid var(--marron);
+  border-radius: var(--radio-lg);
+  overflow: hidden;
+  box-shadow: var(--sombra-md);
+}
+
+/* Bloque de color donde va la foto (hoy: ilustración provisional) */
+.tarjeta__imagen {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  background: var(--durazno);
+  border-bottom: 3px solid var(--marron);
+}
+.tarjeta:nth-child(3n + 2) .tarjeta__imagen {
+  background: var(--rosa);
+}
+.tarjeta:nth-child(3n + 3) .tarjeta__imagen {
+  background: #ffe6d6;
+}
+.tarjeta__imagen img {
+  width: 58%;
+  height: auto;
+}
+/* Cuando haya fotos reales, que llenen el bloque */
+.tarjeta__imagen img.es-foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tarjeta__etiquetas {
+  position: absolute;
+  top: var(--esp-3);
+  left: var(--esp-3);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-1);
+}
+
+.tarjeta__cuerpo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-2);
+  flex: 1;
+  padding: var(--esp-4);
+}
+
+.tarjeta__nombre {
+  font-size: var(--texto-xl);
+  margin: 0;
+}
+
+.tarjeta__descripcion {
+  margin: 0;
+  color: var(--tinta-suave);
+  font-size: var(--texto-sm);
+  line-height: 1.5;
+}
+
+.tarjeta__pie {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--esp-3);
+  margin-top: auto;
+  padding-top: var(--esp-2);
+}
+
+.precio {
+  font-family: var(--fuente-titulo);
+  font-weight: 800;
+  font-size: var(--texto-xl);
+  color: var(--naranja-texto);
+  line-height: 1;
+}
+
+.tarjeta__nota {
+  font-size: var(--texto-xs);
+  color: var(--tinta-suave);
+  margin: 0;
+}
+
+/* Producto no pedible (sojus +18) o no disponible */
+.tarjeta--bloqueada .tarjeta__imagen {
+  filter: grayscale(0.35);
+}
+
+/* ---------------------------------------------------------
+   OPCIONES DEL PERSONALIZADOR (radio / checkbox como tarjetas)
+   El input real queda oculto visualmente pero accesible.
+   --------------------------------------------------------- */
+.paso {
+  border: 0;
+  margin: 0 0 var(--esp-5);
+  padding: 0;
+}
+
+.paso__titulo {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-2);
+  margin-bottom: var(--esp-3);
+  padding: 0;
+  font-family: var(--fuente-titulo);
+  font-weight: 800;
+  font-size: var(--texto-lg);
+  color: var(--marron);
+  text-transform: uppercase;
+}
+
+.paso__numero {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--naranja);
+  color: var(--tinta);
+  font-size: var(--texto-md);
+  flex-shrink: 0;
+}
+
+.paso__ayuda {
+  margin: calc(var(--esp-2) * -1) 0 var(--esp-3);
+  font-size: var(--texto-sm);
+  color: var(--tinta-suave);
+}
+
+.opciones {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--esp-2);
+}
+
+.opcion {
+  position: relative;
+}
+
+.opcion input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.opcion__caja {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 56px;
+  padding: var(--esp-2) var(--esp-3);
+  border: 2px solid var(--durazno);
+  border-radius: var(--radio-md);
+  background: var(--blanco);
+  font-weight: 500;
+  font-size: var(--texto-sm);
+  line-height: 1.3;
+  transition: background 0.12s, border-color 0.12s;
+}
+
+.opcion__extra {
+  font-size: var(--texto-xs);
+  font-weight: 600;
+  color: var(--naranja-texto);
+}
+
+.opcion input:checked + .opcion__caja {
+  border-color: var(--marron);
+  background: var(--durazno);
+  box-shadow: inset 0 0 0 1px var(--marron);
+}
+.opcion input:checked + .opcion__caja .opcion__extra {
+  color: var(--marron);
+}
+
+.opcion input:focus-visible + .opcion__caja {
+  outline: var(--foco);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------
+   CANTIDAD (− 2 +)
+   --------------------------------------------------------- */
+.cantidad {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-2);
+}
+.cantidad__valor {
+  min-width: 2ch;
+  text-align: center;
+  font-weight: 600;
+  font-size: var(--texto-lg);
+}
+
+/* ---------------------------------------------------------
+   DIÁLOGOS (<dialog> nativo): personalizador y carrito
+   --------------------------------------------------------- */
+.dialogo {
+  width: min(100% - 16px, 560px);
+  max-height: calc(100dvh - 16px);
+  margin: auto auto 8px;
+  padding: 0;
+  border: 3px solid var(--marron);
+  border-radius: var(--radio-lg);
+  background: var(--crema);
+  color: var(--tinta);
+  box-shadow: var(--sombra-md);
+}
+.dialogo::backdrop {
+  background: rgb(26 26 26 / 0.55);
+}
+.dialogo[open] {
+  display: flex;
+  flex-direction: column;
+  animation: subir 0.22s ease-out;
+}
+@media (min-width: 768px) {
+  .dialogo {
+    margin: auto;
+  }
+}
+@keyframes subir {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+}
+
+.dialogo__cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--esp-3);
+  padding: var(--esp-4);
+  border-bottom: 2px dashed var(--durazno);
+}
+.dialogo__cabecera h2 {
+  margin: 0;
+  font-size: var(--texto-xl);
+}
+
+.dialogo__cuerpo {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--esp-4);
+}
+
+.dialogo__pie {
+  padding: var(--esp-4);
+  border-top: 2px dashed var(--durazno);
+  background: var(--blanco);
+  display: grid;
+  gap: var(--esp-3);
+}
+
+/* ---------------------------------------------------------
+   CARRITO
+   --------------------------------------------------------- */
+.carrito__vacio {
+  text-align: center;
+  padding: var(--esp-6) var(--esp-4);
+  color: var(--tinta-suave);
+}
+.carrito__vacio img {
+  width: 96px;
+  margin: 0 auto var(--esp-4);
+}
+
+.carrito__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--esp-3);
+}
+
+.linea {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--esp-2) var(--esp-3);
+  padding: var(--esp-3);
+  background: var(--blanco);
+  border: 2px solid var(--durazno);
+  border-radius: var(--radio-md);
+}
+.linea__nombre {
+  font-weight: 600;
+  line-height: 1.3;
+}
+.linea__detalle {
+  margin: var(--esp-1) 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--texto-sm);
+  color: var(--tinta-suave);
+  line-height: 1.4;
+}
+.linea__subtotal {
+  font-weight: 600;
+  white-space: nowrap;
+}
+.linea__acciones {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.linea__quitar {
+  min-height: var(--tactil);
+  padding: 0 var(--esp-2);
+  background: none;
+  border: 0;
+  color: var(--naranja-texto);
+  font-weight: 600;
+  font-size: var(--texto-sm);
+  text-decoration: underline;
+}
+
+.carrito__total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--fuente-titulo);
+  font-weight: 800;
+  font-size: var(--texto-xl);
+  color: var(--marron);
+  text-transform: uppercase;
+}
+
+.campo {
+  display: grid;
+  gap: var(--esp-1);
+  font-size: var(--texto-sm);
+  font-weight: 500;
+}
+.campo input {
+  min-height: var(--tactil);
+  padding: var(--esp-2) var(--esp-3);
+  border: 2px solid var(--durazno);
+  border-radius: var(--radio-sm);
+  background: var(--blanco);
+}
+.campo input:focus-visible {
+  border-color: var(--marron);
+}
+.campos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--esp-2);
+  margin-top: var(--esp-4);
+}
+
+.nota-pequena {
+  margin: 0;
+  font-size: var(--texto-xs);
+  color: var(--tinta-suave);
+  line-height: 1.5;
+}
+
+/* Contador sobre el botón del carrito */
+.contador {
+  display: inline-grid;
+  place-items: center;
+  min-width: 24px;
+  height: 24px;
+  padding-inline: 6px;
+  border-radius: var(--radio-pastilla);
+  background: var(--marron);
+  color: var(--blanco);
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-xs);
+  font-weight: 600;
+}
+
+/* Barra inferior "Ver pedido" (aparece cuando hay productos) */
+.barra-pedido {
+  position: fixed;
+  left: 50%;
+  bottom: var(--esp-3);
+  z-index: 40;
+  width: min(100% - 32px, 480px);
+  transform: translateX(-50%);
+  justify-content: space-between;
+}
+.barra-pedido[hidden] {
+  display: none;
+}
+
+/* Aviso flotante (toast) */
+.aviso-flotante {
+  position: fixed;
+  left: 50%;
+  top: calc(var(--alto-cabecera) + var(--esp-3));
+  z-index: 60;
+  transform: translateX(-50%);
+  padding: var(--esp-2) var(--esp-4);
+  border-radius: var(--radio-pastilla);
+  background: var(--marron);
+  color: var(--blanco);
+  font-weight: 500;
+  font-size: var(--texto-sm);
+  box-shadow: var(--sombra-md);
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.aviso-flotante:empty {
+  opacity: 0;
+}
+
+/* ---------------------------------------------------------
+   DECORACIÓN: manchas orgánicas, puntos y donas
+   (aria-hidden en el HTML: son puramente visuales)
+   --------------------------------------------------------- */
+.mancha {
+  position: absolute;
+  z-index: -1;
+  border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
+  pointer-events: none;
+}
+.mancha--marron {
+  background: var(--marron-bloque);
+}
+.mancha--durazno {
+  background: var(--durazno);
+}
+.mancha--rosa {
+  background: var(--rosa);
+}
+
+.punto {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.punto--lleno {
+  background: var(--naranja-pincelada);
+}
+.punto--aro {
+  border: 3px solid var(--naranja-pincelada);
+}
+
+.dona-deco {
+  position: absolute;
+  pointer-events: none;
+}
