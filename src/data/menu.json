@@ -1,0 +1,527 @@
+{
+  "_nota": "Precios de REFERENCIA. Regla: se usa el precio de Uber Eats cuando existe; si no, el de la lámina 1 del menú de Canva. 'fuente' dice de dónde sale cada precio y 'precios_otras_fuentes' guarda los valores distintos encontrados, para discutirlos con el dueño.",
+
+  "fuentes": {
+    "ubereats": "Uber Eats (tienda Mochizuki RD), consultado nov. 2026",
+    "canva-l1": "Menú de Canva enlazado en Google, lámina 1 (donuts y bebidas)",
+    "canva-l2": "Menú de Canva, lámina 2 (corn dogs)",
+    "canva-l3": "Menú de Canva, lámina 3 (corn dogs)"
+  },
+
+  "categorias": [
+    { "id": "corn-dogs", "nombre": "K-Corn Dogs", "emoji": "🌭", "orden": 1, "intro": "Se fríen al momento y tú decides: sabor, relleno y salsa." },
+    { "id": "mochi", "nombre": "Mochi Donuts", "emoji": "🍩", "orden": 2, "intro": "Suaves, elásticas y en forma de anillo. ¡Arranca una bolita y comparte (o no)!" },
+    { "id": "otros-platos", "nombre": "Otros platos", "emoji": "🍙", "orden": 3, "intro": "" },
+    { "id": "yakults", "nombre": "Yakults", "emoji": "✨", "orden": 4, "intro": "Vaso grande de 24 oz con popping pearls incluidas." },
+    { "id": "matcha", "nombre": "Matcha Drinks", "emoji": "🍵", "orden": 5, "intro": "" },
+    { "id": "slushies", "nombre": "Slushies", "emoji": "🧊", "orden": 6, "intro": "" },
+    { "id": "cafes", "nombre": "Cafés", "emoji": "☕", "orden": 7, "intro": "" },
+    { "id": "bebidas", "nombre": "Otras bebidas", "emoji": "🥤", "orden": 8, "intro": "" },
+    { "id": "sojus", "nombre": "Sojus", "emoji": "🔞", "orden": 9, "intro": "Solo para mayores de 18, en tienda y con identificación. No se piden por WhatsApp." }
+  ],
+
+  "conjuntos_opciones": {
+    "corn-dog": {
+      "_nota": "Flujo de 3 pasos del menú de Canva. Paso 1 = el sabor (es el producto). Pasos 2 y 3 + extras se definen aquí.",
+      "paso_sabor": { "titulo": "Elige tu sabor", "categoria": "corn-dogs" },
+      "grupos": [
+        {
+          "id": "relleno",
+          "etiqueta": "Relleno",
+          "titulo": "Elige tu relleno",
+          "paso": 2,
+          "tipo": "unica",
+          "por_defecto": "salchicha",
+          "items": [
+            { "id": "salchicha", "nombre": "Salchicha", "extra": 0 },
+            { "id": "mozzarella", "nombre": "Mozzarella", "extra": 75 },
+            { "id": "mitad", "nombre": "Mitad y mitad", "extra": 25, "por_confirmar": true, "_nota": "Lámina 2: gratis. Lámina 3: +25. Se usa +25 hasta confirmar." }
+          ]
+        },
+        {
+          "id": "salsa",
+          "etiqueta": "Salsas",
+          "titulo": "Elige tu salsa",
+          "paso": 3,
+          "tipo": "multiple",
+          "minimo": 1,
+          "incluidas": 1,
+          "precio_adicional": 50,
+          "_nota": "Interpretación de '(+1)' del menú: 1 salsa incluida; cada salsa adicional cuesta 'precio_adicional' (Extra 'salsa adicional +50').",
+          "items": [
+            { "id": "ketchup", "nombre": "Ketchup", "extra": 0 },
+            { "id": "sweet-chili", "nombre": "Sweet chili", "extra": 0 },
+            { "id": "bbq", "nombre": "BBQ", "extra": 0 },
+            { "id": "honey-mustard", "nombre": "Honey mustard", "extra": 0 },
+            { "id": "spicy-mayo", "nombre": "Spicy mayo 🔥", "extra": 0 },
+            { "id": "parmesano", "nombre": "Parmesano", "extra": 0 }
+          ]
+        },
+        {
+          "id": "extras",
+          "etiqueta": "Extras",
+          "titulo": "Extras",
+          "tipo": "multiple",
+          "minimo": 0,
+          "items": [{ "id": "azucar", "nombre": "Azúcar por encima", "extra": 0 }]
+        }
+      ]
+    },
+    "yakult": {
+      "grupos": [
+        {
+          "id": "perlas",
+          "etiqueta": "Popping pearls",
+          "titulo": "Elige tus popping pearls",
+          "tipo": "unica",
+          "por_defecto": "chinola",
+          "items": [
+            { "id": "chinola", "nombre": "Chinola", "extra": 0 },
+            { "id": "fresa", "nombre": "Fresa", "extra": 0 },
+            { "id": "mango", "nombre": "Mango", "extra": 0 }
+          ]
+        }
+      ]
+    },
+    "extras-bebida": {
+      "_nota": "El menú trae un recuadro 'Extra' general. A qué bebidas aplica cada extra está POR CONFIRMAR.",
+      "grupos": [
+        {
+          "id": "extras",
+          "etiqueta": "Extras",
+          "titulo": "Extras",
+          "tipo": "multiple",
+          "minimo": 0,
+          "items": [
+            { "id": "popping-pearl", "nombre": "Popping pearls", "extra": 50 },
+            { "id": "leche-almendra", "nombre": "Leche de almendra", "extra": 50 }
+          ]
+        }
+      ]
+    },
+    "extras-cafe": {
+      "grupos": [
+        {
+          "id": "extras",
+          "etiqueta": "Extras",
+          "titulo": "Extras",
+          "tipo": "multiple",
+          "minimo": 0,
+          "items": [{ "id": "leche-almendra", "nombre": "Leche de almendra", "extra": 50 }]
+        }
+      ]
+    },
+    "onigiri": {
+      "grupos": [
+        {
+          "id": "relleno",
+          "etiqueta": "Relleno",
+          "titulo": "Elige el relleno",
+          "tipo": "unica",
+          "por_defecto": "atun",
+          "items": [
+            { "id": "atun", "nombre": "Atún", "extra": 0 },
+            { "id": "surimi", "nombre": "Surimi", "extra": 0 }
+          ]
+        }
+      ]
+    }
+  },
+
+  "productos": [
+    {
+      "id": "cd-original",
+      "categoria": "corn-dogs",
+      "nombre": "K-Corn Dog Original",
+      "descripcion": "El de toda la vida: rebozado dorado, crujiente y recién salido del aceite.",
+      "precio": 300,
+      "fuente": "ubereats",
+      "precios_otras_fuentes": { "canva-l2": 250, "canva-l3": 300 },
+      "imagen": "img/placeholders/corn-dog.svg",
+      "etiquetas": [],
+      "destacado": true,
+      "disponible": true,
+      "opciones": "corn-dog"
+    },
+    {
+      "id": "cd-ramen",
+      "categoria": "corn-dogs",
+      "nombre": "K-Corn Dog Ramen",
+      "descripcion": "Forrado de fideos de ramen tostaditos. El crunch más ruidoso del campus.",
+      "precio": 325,
+      "fuente": "ubereats",
+      "precios_otras_fuentes": { "canva-l2": 425, "canva-l3": 350 },
+      "imagen": "img/placeholders/corn-dog.svg",
+      "etiquetas": [],
+      "destacado": false,
+      "disponible": true,
+      "opciones": "corn-dog"
+    },
+    {
+      "id": "cd-papa",
+      "categoria": "corn-dogs",
+      "nombre": "K-Corn Dog Papa",
+      "descripcion": "Cubierto de cubitos de papa frita. Dos antojos en uno solo.",
+      "precio": 375,
+      "fuente": "ubereats",
+      "precios_otras_fuentes": { "canva-l2": 475, "canva-l3": 350 },
+      "imagen": "img/placeholders/corn-dog.svg",
+      "etiquetas": ["mas-vendido"],
+      "destacado": true,
+      "disponible": true,
+      "opciones": "corn-dog"
+    },
+    {
+      "id": "cd-cheetos",
+      "categoria": "corn-dogs",
+      "nombre": "K-Corn Dog Cheetos Flamin' Hot",
+      "descripcion": "Cheetos picantes por fuera y cheddar derretido por encima. ¡Pica rico! 🔥",
+      "precio": 375,
+      "fuente": "ubereats",
+      "precios_otras_fuentes": { "canva-l2": 475, "canva-l3": 350 },
+      "imagen": "img/placeholders/corn-dog.svg",
+      "etiquetas": [],
+      "destacado": true,
+      "disponible": true,
+      "opciones": "corn-dog"
+    },
+    {
+      "id": "cd-doritos",
+      "categoria": "corn-dogs",
+      "nombre": "K-Corn Dog Doritos Crunch",
+      "descripcion": "Doritos triturados y una lluvia de cheddar fundido. Crujiente nivel máximo.",
+      "precio": 400,
+      "fuente": "ubereats",
+      "precios_otras_fuentes": { "canva-l2": 500, "canva-l3": 350 },
+      "imagen": "img/placeholders/corn-dog.svg",
+      "etiquetas": ["mas-vendido"],
+      "destacado": false,
+      "disponible": true,
+      "opciones": "corn-dog"
+    },
+    {
+      "id": "cd-pizza",
+      "categoria": "corn-dogs",
+      "nombre": "K-Corn Dog Pizza Pizza",
+      "descripcion": "Mozzarella gratinada, salsa de tomate, pepperoni y albahaca: tu pizza, pero en palito.",
+      "precio": 400,
+      "fuente": "ubereats",
+      "precios_otras_fuentes": { "canva-l2": 500, "canva-l3": 375 },
+      "imagen": "img/placeholders/corn-dog.svg",
+      "etiquetas": ["new"],
+      "destacado": false,
+      "disponible": true,
+      "opciones": "corn-dog"
+    },
+    {
+      "id": "cd-corn-cheese",
+      "categoria": "corn-dogs",
+      "nombre": "K-Corn Dog Corn Cheese",
+      "descripcion": "Mozzarella, maíz dulce y un toque de mantequilla. Dulce y saladito a la vez.",
+      "precio": 400,
+      "fuente": "ubereats",
+      "precios_otras_fuentes": { "canva-l2": 500 },
+      "imagen": "img/placeholders/corn-dog.svg",
+      "etiquetas": ["new"],
+      "destacado": false,
+      "disponible": true,
+      "opciones": "corn-dog"
+    },
+
+    {
+      "id": "mochi-1",
+      "categoria": "mochi",
+      "nombre": "Mochi Donut (1 unidad)",
+      "descripcion": "Una dona de masa tipo mochi, suave y elástica. Pregunta por los sabores disponibles.",
+      "precio": 150,
+      "fuente": "canva-l1",
+      "imagen": "img/placeholders/mochi.svg",
+      "etiquetas": [],
+      "destacado": true,
+      "disponible": true,
+      "opciones": null
+    },
+    {
+      "id": "mochi-6",
+      "categoria": "mochi",
+      "nombre": "Caja de 6 Mochi Donuts",
+      "descripcion": "Para compartir con el grupo de estudio (o para ti, no juzgamos).",
+      "precio": 650,
+      "fuente": "ubereats",
+      "precios_otras_fuentes": { "canva-l1": 720 },
+      "imagen": "img/placeholders/mochi.svg",
+      "etiquetas": [],
+      "destacado": false,
+      "disponible": true,
+      "opciones": null
+    },
+    {
+      "id": "mochi-12",
+      "categoria": "mochi",
+      "nombre": "Caja de 12 Mochi Donuts",
+      "descripcion": "La docena completa para la oficina, el cumple o la junte del viernes.",
+      "precio": 1240,
+      "fuente": "ubereats",
+      "precios_otras_fuentes": { "canva-l1": 1380 },
+      "imagen": "img/placeholders/mochi.svg",
+      "etiquetas": [],
+      "destacado": false,
+      "disponible": true,
+      "opciones": null
+    },
+
+    {
+      "id": "onigiri",
+      "categoria": "otros-platos",
+      "nombre": "Onigiri",
+      "descripcion": "Triangulito de arroz envuelto en alga, relleno de atún o surimi.",
+      "precio": 250,
+      "fuente": "ubereats",
+      "precios_otras_fuentes": { "canva-l2": 250, "canva-l3": 200 },
+      "imagen": "img/placeholders/onigiri.svg",
+      "etiquetas": [],
+      "destacado": false,
+      "disponible": true,
+      "opciones": "onigiri"
+    },
+
+    {
+      "id": "yakult-chinola",
+      "categoria": "yakults",
+      "nombre": "Yakult de Chinola",
+      "descripcion": "Refrescante y ácido, con perlas que explotan. 24 oz.",
+      "precio": 300,
+      "fuente": "canva-l1",
+      "imagen": "img/placeholders/bebida.svg",
+      "etiquetas": [],
+      "destacado": false,
+      "disponible": true,
+      "opciones": "yakult"
+    },
+    {
+      "id": "yakult-fresa",
+      "categoria": "yakults",
+      "nombre": "Yakult de Fresa",
+      "descripcion": "Dulce y cremosito, con popping pearls. 24 oz.",
+      "precio": 300,
+      "fuente": "canva-l1",
+      "imagen": "img/placeholders/bebida.svg",
+      "etiquetas": [],
+      "destacado": false,
+      "disponible": true,
+      "opciones": "yakult"
+    },
+    {
+      "id": "yakult-fruit-punch",
+      "categoria": "yakults",
+      "nombre": "Yakult de Fruit Punch",
+      "descripcion": "Mezcla frutal con perlas incluidas. 24 oz.",
+      "precio": 300,
+      "fuente": "canva-l1",
+      "imagen": "img/placeholders/bebida.svg",
+      "etiquetas": [],
+      "destacado": false,
+      "disponible": true,
+      "opciones": "yakult"
+    },
+    {
+      "id": "yakult-naranja",
+      "categoria": "yakults",
+      "nombre": "Yakult de Naranja",
+      "descripcion": "Cítrico y fresquito, con popping pearls. 24 oz.",
+      "precio": 300,
+      "fuente": "canva-l1",
+      "imagen": "img/placeholders/bebida.svg",
+      "etiquetas": [],
+      "destacado": false,
+      "disponible": true,
+      "opciones": "yakult"
+    },
+
+    {
+      "id": "matcha-fresa",
+      "categoria": "matcha",
+      "nombre": "Matcha Latte de Fresa",
+      "descripcion": "Matcha cremoso sobre una capa de fresa.",
+      "precio": 280,
+      "fuente": "canva-l1",
+      "imagen": "img/placeholders/bebida.svg",
+      "etiquetas": [],
+      "destacado": false,
+      "disponible": true,
+      "opciones": "extras-bebida"
+    },
+    {
+      "id": "matcha-mango",
+      "categoria": "matcha",
+      "nombre": "Matcha Latte de Mango",
+      "descripcion": "Matcha con mango: tropical y bien balanceado.",
+      "precio": 280,
+      "fuente": "canva-l1",
+      "imagen": "img/placeholders/bebida.svg",
+      "etiquetas": [],
+      "destacado": false,
+      "disponible": true,
+      "opciones": "extras-bebida"
+    },
+    {
+      "id": "matcha-blueberry",
+      "categoria": "matcha",
+      "nombre": "Matcha Latte de Blueberry",
+      "descripcion": "Matcha y blueberry, el combo más bonito del menú.",
+      "precio": 300,
+      "fuente": "canva-l1",
+      "imagen": "img/placeholders/bebida.svg",
+      "etiquetas": [],
+      "destacado": false,
+      "disponible": true,
+      "opciones": "extras-bebida"
+    },
+
+    {
+      "id": "slushie-mango",
+      "categoria": "slushies",
+      "nombre": "Slushie Frozen de Mango",
+      "descripcion": "Granizado de mango para sobrevivir al calor entre clases.",
+      "precio": 200,
+      "fuente": "ubereats",
+      "imagen": "img/placeholders/bebida.svg",
+      "etiquetas": [],
+      "destacado": false,
+      "disponible": true,
+      "opciones": null
+    },
+    {
+      "id": "slushie-fresa",
+      "categoria": "slushies",
+      "nombre": "Slushie Frozen de Fresa",
+      "descripcion": "Granizado de fresa, bien frío y bien rosado.",
+      "precio": 200,
+      "fuente": "ubereats",
+      "imagen": "img/placeholders/bebida.svg",
+      "etiquetas": [],
+      "destacado": false,
+      "disponible": true,
+      "opciones": null
+    },
+
+    {
+      "id": "espresso",
+      "categoria": "cafes",
+      "nombre": "Espresso",
+      "descripcion": "Cortito y fuerte, para el examen de las 8.",
+      "precio": 70,
+      "fuente": "canva-l1",
+      "imagen": "img/placeholders/bebida.svg",
+      "etiquetas": [],
+      "destacado": false,
+      "disponible": true,
+      "opciones": "extras-cafe"
+    },
+    {
+      "id": "capuccino",
+      "categoria": "cafes",
+      "nombre": "Capuccino",
+      "descripcion": "Espresso con leche espumosa. Perfecto con una mochi donut.",
+      "precio": 140,
+      "fuente": "canva-l1",
+      "imagen": "img/placeholders/bebida.svg",
+      "etiquetas": [],
+      "destacado": false,
+      "disponible": true,
+      "opciones": "extras-cafe"
+    },
+
+    {
+      "id": "te-jamaica",
+      "categoria": "bebidas",
+      "nombre": "Té de Jamaica",
+      "descripcion": "Infusión de flor de jamaica, fría y refrescante.",
+      "precio": 275,
+      "fuente": "canva-l1",
+      "imagen": "img/placeholders/bebida.svg",
+      "etiquetas": [],
+      "destacado": false,
+      "disponible": true,
+      "opciones": null
+    },
+    {
+      "id": "refresco",
+      "categoria": "bebidas",
+      "nombre": "Refresco",
+      "descripcion": "Pregunta por los sabores disponibles.",
+      "precio": 65,
+      "fuente": "ubereats",
+      "precios_otras_fuentes": { "canva-l1": 80 },
+      "_nota": "En Uber Eats figura como Sprite.",
+      "imagen": "img/placeholders/bebida.svg",
+      "etiquetas": [],
+      "destacado": false,
+      "disponible": true,
+      "opciones": null
+    },
+    {
+      "id": "agua",
+      "categoria": "bebidas",
+      "nombre": "Agua",
+      "descripcion": "Botellita de agua.",
+      "precio": 30,
+      "fuente": "ubereats",
+      "precios_otras_fuentes": { "canva-l1": 50 },
+      "imagen": "img/placeholders/bebida.svg",
+      "etiquetas": [],
+      "destacado": false,
+      "disponible": true,
+      "opciones": null
+    },
+
+    {
+      "id": "soju-fresa",
+      "categoria": "sojus",
+      "nombre": "Soju de Fresa",
+      "descripcion": "Bebida alcohólica coreana sabor fresa.",
+      "precio": 550,
+      "fuente": "canva-l1",
+      "imagen": "img/placeholders/soju.svg",
+      "etiquetas": ["mayor-edad"],
+      "destacado": false,
+      "disponible": true,
+      "pedible_online": false,
+      "opciones": null
+    },
+    {
+      "id": "soju-melocoton",
+      "categoria": "sojus",
+      "nombre": "Soju de Melocotón",
+      "descripcion": "Bebida alcohólica coreana sabor melocotón.",
+      "precio": 550,
+      "fuente": "canva-l1",
+      "imagen": "img/placeholders/soju.svg",
+      "etiquetas": ["mayor-edad"],
+      "destacado": false,
+      "disponible": true,
+      "pedible_online": false,
+      "opciones": null
+    },
+    {
+      "id": "soju-uva",
+      "categoria": "sojus",
+      "nombre": "Soju de Uva",
+      "descripcion": "Bebida alcohólica coreana sabor uva.",
+      "precio": 550,
+      "fuente": "canva-l1",
+      "imagen": "img/placeholders/soju.svg",
+      "etiquetas": ["mayor-edad"],
+      "destacado": false,
+      "disponible": true,
+      "pedible_online": false,
+      "opciones": null
+    }
+  ],
+
+  "etiquetas": {
+    "new": { "texto": "New", "clase": "pastilla--new" },
+    "mas-vendido": { "texto": "¡Más vendido!", "clase": "pastilla--vendido" },
+    "mayor-edad": { "texto": "+18", "clase": "pastilla--edad" }
+  }
+}

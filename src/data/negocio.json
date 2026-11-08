@@ -1,0 +1,74 @@
+{
+  "_nota": "Única fuente de datos del negocio. Edita aquí y cambia todo el sitio (y el JSON-LD de index.html al hacer build). Datos recopilados en nov. 2026 de Google Maps, Instagram y Uber Eats: CONFIRMAR con el dueño.",
+
+  "nombre": "Mochizuki RD",
+  "lema": "Japanese Donuts & Korean Corn Dogs",
+  "etiqueta": "Asian Street Food",
+  "descripcion_seo": "Mochi donuts japonesas y K-corn dogs coreanos frente a la UASD, en Santo Domingo. Mira el menú, arma tu corn dog y pide por WhatsApp.",
+
+  "direccion": {
+    "calle": "C. José Dolores Alfonseca 6",
+    "ciudad": "Santo Domingo",
+    "codigo_postal": "11705",
+    "pais": "DO",
+    "referencia": "Frente a la UASD, Facultad de Economía",
+    "_nota": "Uber Eats y donde.do aún muestran Plaza Juan Dauhajre: NO usar. Confirmar si es mudanza o segunda sucursal."
+  },
+
+  "geo": {
+    "lat": 18.4620279,
+    "lng": -69.9201848,
+    "_nota": "Coordenadas tomadas del enlace de Google Maps."
+  },
+
+  "telefono": {
+    "mostrar": "(829) 648-8712",
+    "e164": "+18296488712",
+    "_nota": "Teléfono público en Google Maps."
+  },
+
+  "whatsapp": {
+    "numero": "18296488712",
+    "verificado": false,
+    "TODO": "VERIFICAR que este número tiene WhatsApp y que alguien atiende pedidos. Es el teléfono de Google; puede no ser el de pedidos. Cuando se confirme, poner verificado: true."
+  },
+
+  "horario": {
+    "confirmado": false,
+    "texto_pendiente": "Horario por confirmar",
+    "dias": [],
+    "TODO": "Fuentes en conflicto: Google dice que cierra a las 8:00 p. m.; Uber Eats dice 10:00 a. m. – 7:30 p. m. Al confirmar, llenar 'dias' con objetos como { \"dias\": \"Lunes a sábado\", \"horas\": \"10:00 a. m. – 8:00 p. m.\", \"schema\": \"Mo-Sa 10:00-20:00\" } y poner confirmado: true."
+  },
+
+  "enlaces": {
+    "instagram": "https://www.instagram.com/mochizuki.rd/",
+    "instagram_usuario": "@mochizuki.rd",
+    "tiktok": null,
+    "tiktok_TODO": "Pedir el usuario de TikTok. Mientras sea null, el botón no se muestra.",
+    "ubereats": "https://www.ubereats.com/do/store/mochizuki-rd-plaza-juan-dauhjare-santo-domingo/xVNTTgWZXpi13RLGwIXgJg",
+    "maps": "https://www.google.com/maps/place/MOCHIZUKI+RD/@18.4620279,-69.9201848,17z",
+    "maps_como_llegar": "https://www.google.com/maps/dir/?api=1&destination=18.4620279%2C-69.9201848",
+    "maps_embed": "https://www.google.com/maps?q=18.4620279,-69.9201848&z=17&output=embed"
+  },
+
+  "calificaciones": [
+    { "fuente": "Google", "valor": 4.5, "resenas": "89" },
+    { "fuente": "Uber Eats", "valor": 4.6, "resenas": "220+" }
+  ],
+  "calificaciones_fecha": "nov. 2026",
+
+  "promo": {
+    "mostrar": false,
+    "texto": "Compra un corn dog y llévate una mochi donut gratis (solo en tienda).",
+    "TODO": "No se muestra: confirmar si sigue vigente y sus condiciones."
+  },
+
+  "sitio": {
+    "url": "https://mochizuki-demo.pages.dev",
+    "url_TODO": "URL provisional del despliegue de prueba. Cambiar también en public/robots.txt y public/sitemap.xml.",
+    "aviso": "Demo de propuesta por Raxotech. No es el sitio oficial.",
+    "autor": "Raxotech"
+  },
+
+  "nota_precios": "Precios de referencia, por confirmar con el negocio. ITBIS incluido; 10% de ley no incluido."
+}
