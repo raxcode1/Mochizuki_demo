@@ -1,0 +1,19 @@
+{
+  "name": "mochizuki-demo",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Demo de propuesta web para Mochizuki RD (Raxotech). No es el sitio oficial.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^6.4.5"
+  },
+  "dependencies": {
+    "@fontsource/baloo-2": "^5.3.0",
+    "@fontsource/poppins": "^5.3.0"
+  }
+}

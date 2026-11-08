@@ -1,0 +1,8 @@
+# Dependencias y build
+node_modules
+dist
+.env
+.DS_Store
+
+# Capturas de terceros: SOLO consulta, nunca al repo ni a producción
+referencias/
