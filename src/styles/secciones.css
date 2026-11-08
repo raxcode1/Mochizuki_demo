@@ -23,6 +23,12 @@
 .wordmark--chico {
   font-size: 1.6rem;
 }
+/* El wordmark de la cabecera es un enlace: área táctil de 44 px */
+a.wordmark {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tactil);
+}
 .wordmark--grande {
   font-size: var(--texto-3xl);
 }
@@ -70,7 +76,9 @@
   color: var(--marron);
   text-decoration: none;
   font-weight: 600;
-  padding: var(--esp-2) 0;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tactil);
 }
 .cabecera__nav a:hover {
   color: var(--naranja-texto);
@@ -274,6 +282,13 @@
 .categorias-nav__lista::-webkit-scrollbar {
   display: none;
 }
+/* En escritorio caben en varias líneas: sin scroll horizontal oculto */
+@media (min-width: 960px) {
+  .categorias-nav__lista {
+    flex-wrap: wrap;
+    padding-inline: var(--esp-6);
+  }
+}
 .categorias-nav a {
   display: inline-flex;
   align-items: center;
@@ -296,6 +311,11 @@
 .categoria {
   padding-block: var(--esp-5);
   scroll-margin-top: calc(var(--alto-cabecera) + 70px);
+}
+@media (min-width: 960px) {
+  .categoria {
+    scroll-margin-top: calc(var(--alto-cabecera) + 130px); /* barra de 2 líneas */
+  }
 }
 .categoria__intro {
   margin-top: calc(var(--esp-2) * -1);
@@ -413,6 +433,9 @@
   font-size: var(--texto-sm);
 }
 .datos a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tactil);
   color: var(--marron);
 }
 .horario__lista {

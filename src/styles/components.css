@@ -179,7 +179,7 @@
   position: relative;
   display: grid;
   place-items: center;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 10;
   background: var(--durazno);
   border-bottom: 3px solid var(--marron);
 }
@@ -190,8 +190,8 @@
   background: #ffe6d6;
 }
 .tarjeta__imagen img {
-  width: 58%;
-  height: auto;
+  width: auto;
+  height: 82%;
 }
 /* Cuando haya fotos reales, que llenen el bloque */
 .tarjeta__imagen img.es-foto {
@@ -266,11 +266,21 @@
   }
   .tarjeta__imagen img {
     width: 78%;
+    height: auto;
   }
   .tarjeta__etiquetas {
     top: var(--esp-2);
     left: var(--esp-1);
     right: var(--esp-1);
+    justify-content: center;
+  }
+  /* Que "¡Más vendido!" quepa en la columna estrecha (parte en 2 líneas) */
+  .tarjeta__etiquetas .pastilla {
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.25;
+    padding: 0.25em 0.6em;
   }
   .tarjeta__cuerpo {
     padding: var(--esp-3);
